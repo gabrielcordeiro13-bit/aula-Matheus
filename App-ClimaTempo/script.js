@@ -2,6 +2,7 @@ async function buscarclima(cidade){
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${CHAVE_API}&units=metric&lang=pt_br`
     const resposta = await fetch(url);
     const dados = await resposta.json()
+    return dados; // tem que retornar os dados. Agora a função entrega a resposta
 }
 
 const botaoBuscar = document.getElementById("btnBuscar");
@@ -23,7 +24,7 @@ botaoBuscar.addEventListener("click", async function(){
     }
 
     divResultado.innerHTML = `
-        <div> class="card-clima">
+        <div class="card-clima">
             <h3>${dados.name}</h3>
             <p>${dados.weather[0].description}</p>
             <p><strong>${dados.main.temp}ºC</strong></p>
